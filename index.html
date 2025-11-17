@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>まいぺーじ | ホーム</title>
+    <!-- ファビコン -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2389C2C0' d='M50 88.7C25.9 71.2 10 53.8 10 35.5 10 18.7 23.7 5 40.5 5c8.3 0 15.6 4.2 20 10.7C65 9.2 72.3 5 80.5 5 97.3 5 90 18.7 90 35.5c0 18.3-15.9 35.7-40 53.2z'/%3E%3C/svg%3E" type="image/svg+xml">
+    <!-- Bootstrap + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+      html, body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, form, input, div { margin: 0; padding: 0; }
+      body { font-family: "Avenir Next", "Hiragino Kaku Gothic ProN W3", sans-serif; background-color: #f8f9fa; }
+      li { list-style: none; }
+      .bg-teal { background-color: #89C2C0; }
+      .text-teal { color: #4a8f8a !important; }
+      .btn-outline-teal { color: #4a8f8a; border-color: #4a8f8a; }
+      .btn-outline-teal:hover { background-color: #4a8f8a; color: white; }
+      .navbar-brand { font-size: 28px; }
+      .nav-link { font-size: 18px; padding-right: 20px; color: #fff !important; }
+      h1, p { color: #5DAFAC; }
+      h1 { font-size: 32px; margin-bottom: 20px; }
+      .shadow-sm { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+      .card-icon { font-size: 2rem; margin-bottom: 10px; }
+      .card-hover { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+      .card-hover:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.15) !important; }
+      .gallery-card {
+        background: linear-gradient(135deg, #89C2C0, #5DAFAC);
+        color: white !important;
+        padding: 2rem;
+        border-radius: 1rem;
+        text-align: center;
+      }
+      .gallery-card * { color: white !important; }
+      .gallery-card .btn { background: white; color: #4a8f8a !important; font-weight: bold; }
+      .gallery-card .btn:hover { background: #4a8f8a; color: white !important; }
+      .gallery-card .card-icon { font-size: 3rem; margin-bottom: 1rem; }
+
+      /* ギャラリーカード内画像（クリック無効） */
+      .gallery-thumb {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 0.8rem;
+        transition: transform 0.3s ease;
+        pointer-events: none;
+      }
+      .gallery-thumb:hover {
+        transform: scale(1.08);
+      }
+
+      /* 最新更新カード */
+      .update-card {
+        background: linear-gradient(135deg, #fff, #f0f9f8);
+        border-left: 5px solid #89C2C0;
+        padding: 1rem 1.2rem;
+        margin-bottom: 0.8rem;
+        border-radius: 0.8rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        transition: transform 0.2s ease;
+      }
+      .update-card:hover {
+        transform: translateX(5px);
+      }
+      .update-date {
+        font-weight: bold;
+        color: #4a8f8a;
+        font-size: 0.9rem;
+      }
+      .update-text {
+        margin: 0.3rem 0 0;
+        color: #555;
+        font-size: 0.95rem;
+      }
+      @media (max-width: 576px) {
+        .update-card { padding: 0.8rem; }
+        .update-date { font-size: 0.85rem; }
+        .update-text { font-size: 0.9rem; }
+        .card-icon { font-size: 1.8rem; }
+        .gallery-thumb { height: 80px; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ナビ -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-teal">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">まいぺーじ</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="about.html">自己紹介</a></li>
+            <li class="nav-item"><a class="nav-link" href="scores.html">テストの成績</a></li>
+            <li class="nav-item"><a class="nav-link" href="quiz.html">クイズ</a></li>
+            <li class="nav-item"><a class="nav-link" href="gallery.html">ギャラリー</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- メイン -->
+    <div class="container mt-5">
+      <h1>ここにたどり着いてくれたあなたへ</h1>
+      <p>こんにちは！</p>
+      <p>いろいろなコンテンツを随時追加予定です！</p>
+      <div class="row mt-5 g-4">
+        <!-- カード3つ -->
+        <div class="col-12 col-md-4">
+          <div class="p-4 bg-white rounded shadow-sm text-center card-hover">
+            <div class="card-icon text-teal"><i class="bi bi-person-fill"></i></div>
+            <h2 class="h4 text-teal">自己紹介</h2>
+            <p>初カキコ...ども...</p>
+            <a href="about.html" class="btn btn-outline-teal btn-sm">more →</a>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-4 bg-white rounded shadow-sm text-center card-hover">
+            <div class="card-icon text-teal"><i class="bi bi-bar-chart-fill"></i></div>
+            <h2 class="h4 text-teal">テストの成績</h2>
+            <p>ぼくは一番が好きだ！ナンバーワンだ！</p>
+            <a href="scores.html" class="btn btn-outline-teal btn-sm">check →</a>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="p-4 bg-white rounded shadow-sm text-center card-hover">
+            <div class="card-icon text-teal"><i class="bi bi-stars"></i></div>
+            <h2 class="h4 text-teal">クイズ</h2>
+            <p>授業制作からの輸入</p>
+            <a href="quiz.html" class="btn btn-outline-teal btn-sm">solve →</a>
+          </div>
+        </div>
+
+        <!-- ギャラリーカード（ランダム3枚・タイトルなし・クリック無効） -->
+        <div class="col-12 mt-4">
+          <div class="gallery-card rounded shadow">
+            <div class="card-icon"><i class="bi bi-camera-fill"></i></div>
+            <h2 class="h3 mb-3">ギャラリー</h2>
+            <p class="lead mb-4">描いてきたたくさんのイラスト</p>
+            <div class="row g-2" id="randomThumbs">
+              <!-- JSで自動挿入 -->
+            </div>
+            <a href="gallery.html" class="btn btn-light px-4 py-2 mt-3">View →</a>
+          </div>
+        </div>
+
+        <!-- ★★★ 最新更新（3つだけ！） ★★★ -->
+        <div class="col-12 mt-5">
+          <div class="p-4 bg-white rounded shadow-sm">
+            <h3 class="mb-3 text-teal">最新更新</h3>
+            <div class="update-card">
+              <div class="update-date">11/13</div>
+              <p class="update-text">ホームのギャラリーサンプル画像を追加！</p>
+            </div>
+            <div class="update-card">
+              <div class="update-date">11/11</div>
+              <p class="update-text">スキルバーにスクロールアニメ追加！</p>
+            </div>
+            <div class="update-card">
+              <div class="update-date">11/10</div>
+              <p class="update-text">クイズに白枠ボタン実装！</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ランダム3枚 JS -->
+    <script>
+      const allImages = [
+        "gallery/jojo1.png",
+        "gallery/jojo2.png",
+        "gallery/jojo_special.png",
+        "gallery/hundred1.png",
+        "gallery/hundred2.png",
+        "gallery/omori1.png",
+        "gallery/omori2.png",
+        "gallery/dangan1.png",
+        "gallery/dangan2.png",
+        "gallery/dangan3.png"
+      ];
+
+      const shuffled = [...allImages].sort(() => 0.5 - Math.random());
+      const selected = shuffled.slice(0, 3);
+
+      const container = document.getElementById('randomThumbs');
+      selected.forEach(src => {
+        container.innerHTML += `
+          <div class="col-4">
+            <img src="${src}" alt="イラスト" class="gallery-thumb">
+          </div>
+        `;
+      });
+    </script>
+  </body>
+</html>

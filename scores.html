@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>まいぺーじ | テストの成績</title>
+   
+    <!-- ファビコン（ホームと同じ） -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2389C2C0' d='M50 88.7C25.9 71.2 10 53.8 10 35.5 10 18.7 23.7 5 40.5 5c8.3 0 15.6 4.2 20 10.7C65 9.2 72.3 5 80.5 5 97.3 5 90 18.7 90 35.5c0 18.3-15.9 35.7-40 53.2z'/%3E%3C/svg%3E" type="image/svg+xml">
+   
+    <!-- Bootstrap + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+   
+    <style>
+      html, body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, form, input, div { margin: 0; padding: 0; }
+      body { font-family: "Avenir Next", "Hiragino Kaku Gothic ProN W3", sans-serif; background-color: #f8f9fa; }
+      li { list-style: none; }
+      .bg-teal { background-color: #89C2C0; }
+      .text-teal { color: #4a8f8a !important; }
+      .btn-outline-teal { color: #4a8f8a; border-color: #4a8f8a; }
+      .btn-outline-teal:hover { background-color: #4a8f8a; color: white; }
+      .navbar-brand { font-size: 28px; }
+      .nav-link { font-size: 18px; padding-right: 20px; color: #fff !important; }
+      h1, p { color: #5DAFAC; }
+      h1 { font-size: 32px; margin-bottom: 20px; }
+      .shadow-sm { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+      
+      /* グラフ画像のスタイル（キャプションなし！） */
+      .graph-img {
+        max-width: 100%;
+        height: auto;
+        border: 4px solid #89C2C0;
+        border-radius: 12px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+        transition: transform 0.3s ease;
+      }
+      .graph-img:hover {
+        transform: scale(1.02);
+      }
+      .section-title {
+        font-size: 1.8rem;
+        color: #4a8f8a;
+        border-bottom: 3px solid #89C2C0;
+        padding-bottom: 8px;
+        margin: 40px 0 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ナビゲーションバー（ホーム・自己紹介と同じ） -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-teal">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">まいぺーじ</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="about.html">自己紹介</a></li>
+            <li class="nav-item"><a class="nav-link active" href="scores.html">テストの成績</a></li>
+            <li class="nav-item"><a class="nav-link" href="fortune.html">うらない</a></li>
+            <li class="nav-item"><a class="nav-link" href="gallery.html">ギャラリー</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <div class="container mt-5">
+      <h1 class="text-center mb-5">テストの成績</h1>
+      <p class="lead text-center mb-5">中学校三年間の成績まとめ！スマートガールの備忘録</p>
+
+      <!-- 1年生 -->
+      <h2 class="section-title text-center">1年生</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-6 text-center">
+          <!-- 【ここに画像を貼る！】1年生・順位グラフ（キャプションなし） -->
+          <img src="1st_rank.png" alt="1年生 順位グラフ" class="graph-img">
+        </div>
+        <div class="col-12 col-md-6 text-center">
+          <!-- 【ここに画像を貼る！】1年生・点数+平均グラフ（キャプションなし） -->
+          <img src="1st_score.png" alt="1年生 点数と平均点" class="graph-img">
+        </div>
+      </div>
+
+      <!-- 2年生 -->
+      <h2 class="section-title text-center">2年生</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-6 text-center">
+          <!-- 【ここに画像を貼る！】2年生・順位グラフ -->
+          <img src="2nd_rank.png" alt="2年生 順位グラフ" class="graph-img">
+        </div>
+        <div class="col-12 col-md-6 text-center">
+          <!-- 【ここに画像を貼る！】2年生・点数+平均グラフ -->
+          <img src="2nd_score.png" alt="2年生 点数と平均点" class="graph-img">
+        </div>
+      </div>
+
+      <!-- 3年生 -->
+      <h2 class="section-title text-center">3年生</h2>
+      <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-6 text-center">
+          <!-- 【ここに画像を貼る！】3年生・順位グラフ -->
+          <img src="3rd_rank.png" alt="3年生 順位グラフ" class="graph-img">
+        </div>
+        <div class="col-12 col-md-6 text-center">
+          <!-- 【ここに画像を貼る！】3年生・点数+平均グラフ -->
+          <img src="3rd_score.png" alt="3年生 点数と平均点" class="graph-img">
+        </div>
+      </div>
+
+      <!-- 自慢ポイント -->
+      <div class="mt-5 p-4 bg-light rounded shadow-sm text-center">
+        <h3 class="text-teal">自慢</h3>
+        <p class="lead">めちゃくちゃ賢いと思う　どうですか？清水東に楽しく通えていますか？今季アニメは追えていますか？</p>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

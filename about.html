@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>まいぺーじ | 自己紹介</title>
+  
+    <!-- ファビコン -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2389C2C0' d='M50 88.7C25.9 71.2 10 53.8 10 35.5 10 18.7 23.7 5 40.5 5c8.3 0 15.6 4.2 20 10.7C65 9.2 72.3 5 80.5 5 97.3 5 90 18.7 90 35.5c0 18.3-15.9 35.7-40 53.2z'/%3E%3C/svg%3E" type="image/svg+xml">
+  
+    <!-- Bootstrap + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+    <style>
+      html, body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, form, input, div { margin: 0; padding: 0; }
+      body { font-family: "Avenir Next", "Hiragino Kaku Gothic ProN W3", sans-serif; background-color: #f8f9fa; }
+      li { list-style: none; }
+      .bg-teal { background-color: #89C2C0; }
+      .text-teal { color: #4a8f8a !important; }
+      .btn-outline-teal { color: #4a8f8a; border-color: #4a8f8a; }
+      .btn-outline-teal:hover { background-color: #4a8f8a; color: white; }
+      .navbar-brand { font-size: 28px; }
+      .nav-link { font-size: 18px; padding-right: 20px; color: #fff !important; }
+      h1, p { color: #5DAFAC; }
+      h1 { font-size: 32px; margin-bottom: 20px; }
+      .shadow-sm { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+     
+      /* プロフィール写真 */
+      .profile-img {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border: 6px solid #89C2C0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      }
+     
+      .section-title {
+        font-size: 1.8rem;
+        color: #4a8f8a;
+        border-bottom: 2px solid #89C2C0;
+        padding-bottom: 8px;
+        margin-bottom: 20px;
+      }
+
+      /* 趣味項目：スマホでも改行きれい！ */
+      .hobby-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        flex-wrap: nowrap; /* 改行させない */
+        gap: 12px; /* アイコンと文字の間隔 */
+      }
+      .hobby-item i {
+        font-size: 1.8rem;
+        color: #89C2C0;
+        flex-shrink: 0; /* アイコンは縮まない */
+      }
+      .hobby-text {
+        font-size: 1rem;
+        line-height: 1.4;
+        white-space: nowrap; /* 長い文字でも折り返さない */
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .hobby-desc {
+        font-size: 0.9rem;
+        color: #666;
+        margin-left: 2.9rem; /* アイコン＋gapの分 */
+        line-height: 1.4;
+      }
+
+      .skill-bar {
+        height: 12px;
+        background: #e9ecef;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .skill-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #89C2C0, #5DAFAC);
+        width: 0%;
+        transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* スマホ調整 */
+      @media (max-width: 576px) {
+        .profile-img {
+          width: 180px !important;
+          height: 180px !important;
+        }
+        .hobby-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 6px;
+        }
+        .hobby-item i {
+          font-size: 1.6rem;
+        }
+        .hobby-text {
+          font-size: 0.95rem;
+          white-space: normal; /* スマホでは折り返しOK */
+        }
+        .hobby-desc {
+          margin-left: 0;
+          font-size: 0.85rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ナビ -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-teal">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">まいぺーじ</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="about.html">自己紹介</a></li>
+            <li class="nav-item"><a class="nav-link" href="scores.html">テストの成績</a></li>
+            <li class="nav-item"><a class="nav-link" href="quiz.html">クイズ</a></li>
+            <li class="nav-item"><a class="nav-link" href="gallery.html">ギャラリー</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- メイン -->
+    <div class="container mt-5">
+      <div class="row align-items-center mb-5">
+        <div class="col-md-4 text-center">
+          <img src="profile.png" alt="プロフィールアイコン" class="img-fluid rounded-circle profile-img">
+        </div>
+        <div class="col-md-8">
+          <h1>はじめまして！ 坪井 あやめです</h1>
+          <p class="lead">年齢: <span class="text-teal">15歳</span>　|　推しカプ: <span class="text-teal">はじふた・はもせ・ななふた・拓衛・すべてのモブレ</span></p>
+          <p>社会不適合者予備軍のオタク<br>
+             「ありがとう」......それしか言う言葉がみつからない......<br>
+             中三、自由時間が少ないです</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- 趣味 -->
+        <div class="col-12 col-lg-6">
+          <div class="p-4 bg-white rounded shadow-sm">
+            <h2 class="section-title">趣味</h2>
+            <ul class="list-unstyled">
+              <li class="hobby-item">
+                <i class="bi bi-camera-fill"></i>
+                <div>
+                  <div class="hobby-text"><strong>お絵描き</strong></div>
+                  <div class="hobby-desc">お絵描きドーパミン中毒のガキ</div>
+                </div>
+              </li>
+              <li class="hobby-item">
+                <i class="bi bi-code-slash"></i>
+                <div>
+                  <div class="hobby-text"><strong>プログラミング</strong></div>
+                  <div class="hobby-desc">ぜ～んぶAI任せっ　自分でもすこしできる</div>
+                </div>
+              </li>
+              <li class="hobby-item">
+                <i class="bi bi-book-fill"></i>
+                <div>
+                  <div class="hobby-text"><strong>読書</strong></div>
+                  <div class="hobby-desc">OVER HEAVENだいすき！浅倉秋成と一穂ミチのオタク</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- スキル -->
+        <div class="col-12 col-lg-6">
+          <div class="p-4 bg-white rounded shadow-sm">
+            <h2 class="section-title">スキル</h2>
+            <div class="mb-3">
+              <div class="d-flex justify-content-between"><span>妄想力</span><span class="text-teal">80%</span></div>
+              <div class="skill-bar mt-1"><div class="skill-fill"></div></div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex justify-content-between"><span>イラスト</span><span class="text-teal">70%</span></div>
+              <div class="skill-bar mt-1"><div class="skill-fill"></div></div>
+            </div>
+            <div class="mb-3">
+              <div class="d-flex justify-content-between"><span>運動神経</span><span class="text-teal">30%</span></div>
+              <div class="skill-bar mt-1"><div class="skill-fill"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 一言 -->
+        <div class="col-12 mt-4">
+          <div class="p-4 bg-white rounded shadow-sm text-center">
+            <h2 class="section-title">ひとこと</h2>
+            <p class="lead fst-italic">"勉強を頑張るオタクってかっこいい！"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- スクロールでスキルバーアニメ -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const fill = entry.target;
+            const widthText = fill.parentElement.previousElementSibling.querySelector('.text-teal').textContent;
+            fill.style.width = widthText;
+            observer.unobserve(fill);
+          }
+        });
+      }, { threshold: 0.6 });
+
+      document.querySelectorAll('.skill-fill').forEach(fill => {
+        observer.observe(fill);
+      });
+    </script>
+  </body>
+</html>

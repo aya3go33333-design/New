@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>まいぺーじ | クイズ</title>
+   
+    <!-- ファビコン -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2389C2C0' d='M50 88.7C25.9 71.2 10 53.8 10 35.5 10 18.7 23.7 5 40.5 5c8.3 0 15.6 4.2 20 10.7C65 9.2 72.3 5 80.5 5 97.3 5 90 18.7 90 35.5c0 18.3-15.9 35.7-40 53.2z'/%3E%3C/svg%3E" type="image/svg+xml">
+   
+    <!-- Bootstrap + Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+   
+    <style>
+      html, body, ul, ol, li, h1, h2, h3, h4, h5, h6, p, form, input, div { margin: 0; padding: 0; }
+      body { 
+        font-family: "Avenir Next", "Hiragino Kaku Gothic ProN W3", sans-serif; 
+        background-color: #f8f9fa; 
+      }
+      li { list-style: none; }
+      .bg-teal { background-color: #89C2C0; }
+      .text-teal { color: #4a8f8a !important; }
+      .btn-outline-teal { 
+        color: #4a8f8a; 
+        border-color: #4a8f8a; 
+        transition: all 0.3s ease;
+      }
+      .btn-outline-teal:hover { 
+        background-color: #4a8f8a; 
+        color: white; 
+        transform: translateY(-3px);
+        box-shadow: 0 8px 15px rgba(74, 143, 138, 0.3);
+      }
+      .navbar-brand { font-size: 28px; }
+      .nav-link { font-size: 18px; padding-right: 20px; color: #fff !important; }
+      h1, p { color: #5DAFAC; }
+      h1 { font-size: 32px; margin-bottom: 20px; }
+      .shadow-sm { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+      /* クイズ専用スタイル */
+      .quiz-container {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+      .question-box {
+        background-color: #fff;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 1rem;
+        border: 2px solid #89C2C0;
+        box-shadow: 0 4px 12px rgba(137, 194, 192, 0.1);
+      }
+      .question {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #4a8f8a;
+      }
+      .answer-btn {
+        background: white;
+        color: #4a8f8a;
+        border: 2px solid #89C2C0;
+        padding: 0.6rem 1rem;
+        margin: 0.4rem;
+        border-radius: 50px;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      }
+      .answer-btn:hover {
+        background: #89C2C0;
+        color: white;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(137, 194, 192, 0.3);
+      }
+      .result {
+        text-align: center;
+        font-size: 1.1rem;
+        margin: 1rem 0;
+        padding: 1rem;
+        border-radius: 1rem;
+        display: none;
+        font-weight: 500;
+      }
+      .happy {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      /* ★★★ ここを強化！pタグに直接 !important ★★★ */
+      .try-again {
+        background-color: #f8d7da;
+        border: 1px solid #e8a7c0;
+      }
+      .try-again p {
+        color: #c45b8a !important;
+        margin: 0;
+      }
+
+      #totalScore {
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: bold;
+        margin: 2.5rem 0;
+        padding: 1.8rem;
+        background: linear-gradient(135deg, #f8f9fa, #e9f7f6);
+        border: 3px dashed #89C2C0;
+        border-radius: 1.5rem;
+        display: none;
+        color: #4a8f8a;
+      }
+      #scoreText {
+        font-size: 3rem;
+        color: #5DAFAC;
+        font-weight: bold;
+      }
+      #comment {
+        display: block;
+        margin-top: 0.8rem;
+        font-size: 1.5rem;
+        color: #4a8f8a;
+      }
+      .reset-btn {
+        background: #89C2C0;
+        color: white;
+        padding: 1rem 2.5rem;
+        font-size: 1.1rem;
+        font-weight: bold;
+        border-radius: 50px;
+        box-shadow: 0 4px 12px rgba(137, 194, 192, 0.3);
+        transition: all 0.3s ease;
+        border: 3px solid white;
+      }
+      .reset-btn:hover {
+        background: #4a8f8a;
+        transform: translateY(-5px);
+        box-shadow: 0 12px 20px rgba(74, 143, 138, 0.4);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ナビゲーションバー -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-teal">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">まいぺーじ</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="about.html">自己紹介</a></li>
+            <li class="nav-item"><a class="nav-link" href="scores.html">テストの成績</a></li>
+            <li class="nav-item"><a class="nav-link active" href="quiz.html">クイズ</a></li>
+            <li class="nav-item"><a class="nav-link" href="gallery.html">ギャラリー</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <div class="container mt-5">
+      <div class="quiz-container">
+        <h1 class="text-center mb-4">クイズに挑戦しよう！</h1>
+        <p class="lead text-center mb-5">プログラミングの知識を試してみよう！</p>
+
+        <!-- 問題1 -->
+        <div class="question-box shadow-sm">
+          <div class="question">Q1: 私の好きなプログラミング言語は？</div>
+          <button class="answer-btn" onclick="checkAnswer1('HTML')">HTML</button>
+          <button class="answer-btn" onclick="checkAnswer1('Python')">Python</button>
+          <button class="answer-btn" onclick="checkAnswer1('Java')">Java</button>
+          <button class="answer-btn" onclick="checkAnswer1('C++')">C++</button>
+        </div>
+        <div class="result" id="result1"><p id="message1"></p></div>
+
+        <!-- 問題2 -->
+        <div class="question-box shadow-sm">
+          <div class="question">Q2: Webサイトの色やデザインを変更する言語は？</div>
+          <button class="answer-btn" onclick="checkAnswer2('JavaScript')">JavaScript</button>
+          <button class="answer-btn" onclick="checkAnswer2('CSS')">CSS</button>
+          <button class="answer-btn" onclick="checkAnswer2('C#')">C#</button>
+          <button class="answer-btn" onclick="checkAnswer2('PHP')">PHP</button>
+        </div>
+        <div class="result" id="result2"><p id="message2"></p></div>
+
+        <!-- 問題3 -->
+        <div class="question-box shadow-sm">
+          <div class="question">Q3: Googleが開発したプログラミング言語は？</div>
+          <button class="answer-btn" onclick="checkAnswer3('Go')">Go</button>
+          <button class="answer-btn" onclick="checkAnswer3('Ruby')">Ruby</button>
+          <button class="answer-btn" onclick="checkAnswer3('Java')">Java</button>
+          <button class="answer-btn" onclick="checkAnswer3('Swift')">Swift</button>
+        </div>
+        <div class="result" id="result3"><p id="message3"></p></div>
+
+        <!-- 問題4 -->
+        <div class="question-box shadow-sm">
+          <div class="question">Q4: スマートフォンのアプリを開発するときによく使われる言語は？</div>
+          <button class="answer-btn" onclick="checkAnswer4('Kotlin')">Kotlin</button>
+          <button class="answer-btn" onclick="checkAnswer4('Swift')">Swift</button>
+          <button class="answer-btn" onclick="checkAnswer4('JavaScript')">JavaScript</button>
+          <button class="answer-btn" onclick="checkAnswer4('全部')">全部</button>
+        </div>
+        <div class="result" id="result4"><p id="message4"></p></div>
+
+        <!-- 問題5 -->
+        <div class="question-box shadow-sm">
+          <div class="question">Q5: HTMLの「H」は何の略？</div>
+          <button class="answer-btn" onclick="checkAnswer5('Hyper')">Hyper</button>
+          <button class="answer-btn" onclick="checkAnswer5('High')">High</button>
+          <button class="answer-btn" onclick="checkAnswer5('Hot')">Hot</button>
+          <button class="answer-btn" onclick="checkAnswer5('Happy')">Happy</button>
+        </div>
+        <div class="result" id="result5"><p id="message5"></p></div>
+
+        <!-- 合計スコア -->
+        <div id="totalScore" class="shadow-sm">
+          あなたのスコア: <span id="scoreText">0</span>/5 問正解！<br>
+          <span id="comment"></span>
+        </div>
+
+        <!-- リセットボタン -->
+        <div class="text-center mt-4">
+          <button class="reset-btn" onclick="resetAll()">最初からやり直す</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript -->
+    <script>
+      let correctCount = 0;
+      function checkAnswer1(a) { check(1, a, 'Python'); }
+      function checkAnswer2(a) { check(2, a, 'CSS'); }
+      function checkAnswer3(a) { check(3, a, 'Go'); }
+      function checkAnswer4(a) { check(4, a, '全部'); }
+      function checkAnswer5(a) { check(5, a, 'Hyper'); }
+      
+      function check(qNum, userAnswer, correctAnswer) {
+        const resultDiv = document.getElementById(`result${qNum}`);
+        const messageP = document.getElementById(`message${qNum}`);
+        if (userAnswer === correctAnswer) {
+          messageP.textContent = '正解です！すごいね！';
+          resultDiv.className = 'result happy';
+          correctCount++;
+        } else {
+          messageP.textContent = `残念！正解は「${correctAnswer}」でした><`;
+          resultDiv.className = 'result try-again';
+        }
+        resultDiv.style.display = 'block';
+        updateTotalScore();
+      }
+      
+      function updateTotalScore() {
+        if ([1,2,3,4,5].every(i => document.getElementById(`result${i}`).style.display === 'block')) {
+          document.getElementById('scoreText').textContent = correctCount;
+          const comment = document.getElementById('comment');
+          if (correctCount === 5) {
+            comment.textContent = 'パーフェクト！プログラミング言語王！';
+          } else if (correctCount >= 3) {
+            comment.textContent = 'よくできました！';
+          } else {
+            comment.textContent = '次はもっと頑張ろう！';
+          }
+          document.getElementById('totalScore').style.display = 'block';
+        }
+      }
+      
+      function resetAll() {
+        for (let i = 1; i <= 5; i++) {
+          document.getElementById(`result${i}`).style.display = 'none';
+        }
+        document.getElementById('totalScore').style.display = 'none';
+        correctCount = 0;
+        alert('リセットしました！もう一度挑戦してね。');
+      }
+    </script>
+  </body>
+</html>
