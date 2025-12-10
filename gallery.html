@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>まいぺーじ | ギャラリー</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%2389C2C0' d='M50 88.7C25.9 71.2 10 53.8 10 35.5 10 18.7 23.7 5 40.5 5c8.3 0 15.6 4.2 20 10.7C65 9.2 72.3 5 80.5 5 97.3 5 90 18.7 90 35.5c0 18.3-15.9 35.7-40 53.2z'/%3E%3C/svg%3E" type="image/svg+xml">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+      body { font-family: "Avenir Next", "Hiragino Kaku Gothic ProN W3", sans-serif; background-color: #f8f9fa; }
+      .bg-teal { background-color: #89C2C0; }
+      .text-teal { color: #4a8f8a !important; }
+      .navbar-brand { font-size: 28px; }
+      .nav-link { font-size: 18px; padding-right: 20px; color: #fff !important; }
+
+      /* タブ */
+      .genre-tabs {
+        border-bottom: 2px solid #89C2C0;
+        margin-bottom: 2rem;
+      }
+      .genre-tab {
+        padding: 0.8rem 1.5rem;
+        font-weight: bold;
+        color: #666;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border-radius: 0.5rem 0.5rem 0 0;
+      }
+      .genre-tab.active {
+        background: #89C2C0;
+        color: white !important;
+      }
+      .genre-tab:hover:not(.active) {
+        background: #e0f2f1;
+      }
+
+      /* 画像グリッド */
+      .gallery-img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 0.8rem;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+      .gallery-img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(137,194,192,0.3);
+      }
+
+      /* モーダル */
+      .modal-content {
+        border-radius: 1rem;
+        overflow: hidden;
+      }
+      .modal-img {
+        width: 100%;
+        max-height: 60vh;
+        object-fit: contain;
+      }
+      .modal-desc {
+        padding: 1.5rem;
+        background: #f8f9fa;
+        position: relative;
+      }
+      #modalTitle {
+        color: #5DAFAC !important;
+        font-weight: bold;
+      }
+      #modalDesc {
+        color: #4a8f8a !important;
+        font-size: 1rem;
+      }
+
+      /* ?黄金? & ?最期の波紋? ボタン → 淡いピンク統一！ */
+      .special-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: linear-gradient(135deg, #FFE4E1, #FFB6C1);
+        color: #D81B60 !important;
+        border: 2px solid #FFB6C1;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        box-shadow: 0 4px 12px rgba(255, 182, 193, 0.3);
+        transition: all 0.3s ease;
+        display: none;
+        font-family: "Avenir Next", "Hiragino Kaku Gothic ProN W3", sans-serif;
+      }
+      .special-btn:hover {
+        background: linear-gradient(135deg, #FFB6C1, #FFE4E1);
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 8px 20px rgba(255, 182, 193, 0.5);
+      }
+      .special-btn[data-type="golden"]::before { content: "? "; }
+      .special-btn[data-type="golden"]::after { content: " ?"; }
+      .special-btn[data-type="ripple"]::before { content: "? "; }
+      .special-btn[data-type="ripple"]::after { content: " ?"; }
+
+      @media (max-width: 576px) {
+        .genre-tab { padding: 0.6rem 1rem; font-size: 0.9rem; }
+        .gallery-img { height: 160px; }
+        .special-btn { 
+          font-size: 0.8rem; 
+          padding: 0.4rem 0.8rem; 
+          box-shadow: 0 3px 8px rgba(255, 182, 193, 0.3);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ナビ -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-teal">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html">まいぺーじ</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="about.html">自己紹介</a></li>
+            <li class="nav-item"><a class="nav-link" href="scores.html">テストの成績</a></li>
+            <li class="nav-item"><a class="nav-link" href="quiz.html">クイズ</a></li>
+            <li class="nav-item"><a class="nav-link active" href="gallery.html">ギャラリー</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- メイン -->
+    <div class="container mt-5">
+      <h1 class="text-center mb-4" style="color:#5DAFAC;">ギャラリー</h1>
+
+      <!-- ジャンルタブ -->
+      <div class="d-flex flex-wrap justify-content-center genre-tabs">
+        <div class="genre-tab active" data-genre="all">すべて</div>
+        <div class="genre-tab" data-genre="jojo">ジョジョ</div>
+        <div class="genre-tab" data-genre="hundredline">ハンドレッドライン</div>
+        <div class="genre-tab" data-genre="omori">OMORI</div>
+        <div class="genre-tab" data-genre="danganronpa">ダンガンロンパ</div>
+      </div>
+
+      <!-- 画像グリッド -->
+      <div class="row g-3" id="galleryGrid">
+        <!-- ジョジョ（4枚） -->
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="jojo">
+          <img src="gallery/jojo1.png" class="gallery-img"
+               data-title="DIO様" data-desc="DIO様かわい～！！と思ってる" data-special="false">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="jojo">
+          <img src="gallery/jojo2.png" class="gallery-img"
+               data-title="シーザー..." data-desc="二十世紀にこんな激メロ儚い系男がいるのありえない" data-special="ripple">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="jojo">
+          <img src="gallery/jojo_special.png" class="gallery-img"
+               data-title="ななふた" data-desc="ななふたを愛しています　本当に" data-special="false">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="jojo">
+          <img src="gallery/jojo3.png" class="gallery-img"
+               data-title="漆黒" data-desc="ジョニィ・ジョースターさん萌えすぎるだろ..." data-special="golden">
+        </div>
+
+        <!-- 他のジャンル -->
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="hundredline">
+          <img src="gallery/hundred1.png" class="gallery-img"
+               data-title="くららちゃん" data-desc="マロリク　ツンデレっていいよねって、友達が言っていた" data-special="false">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="hundredline">
+          <img src="gallery/hundred2.png" class="gallery-img"
+               data-title="end001" data-desc="大号泣した　希ちゃん大好きだ" data-special="false">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="omori">
+          <img src="gallery/omori1.png" class="gallery-img"
+               data-title="143" data-desc="マリたそかわいいよな" data-special="false">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="omori">
+          <img src="gallery/omori2.png" class="gallery-img"
+               data-title="Imperfect" data-desc="perfectからimperfectになったのマジで嬉しかった" data-special="false">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="danganronpa">
+          <img src="gallery/dangan1.png" class="gallery-img"
+               data-title="王馬小吉" data-desc="部活で描いたやつだ！　オスガキLove" data-special="false">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="danganronpa">
+          <img src="gallery/dangan2.png" class="gallery-img"
+               data-title="七海ちゃん" data-desc="主人公に託して死んでいくヒロインが、好きだ" data-special="false">
+        </div>
+        <div class="col-6 col-md-4 col-lg-3 gallery-item" data-genre="danganronpa">
+          <img src="gallery/dangan3.png" class="gallery-img"
+               data-title="つみきちゃん" data-desc="ラフが一番かわいかった　でもかわいい" data-special="false">
+        </div>
+      </div>
+    </div>
+
+    <!-- モーダル -->
+    <div class="modal fade" id="imgModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <img id="modalImg" class="modal-img" src="">
+          <div class="modal-desc">
+            <h5 id="modalTitle"></h5>
+            <p id="modalDesc"></p>
+            <button id="specialBtn" class="special-btn">最期の波紋</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- カスタムJS -->
+    <script>
+      // ジャンル切り替え
+      document.querySelectorAll('.genre-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.genre-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const genre = tab.getAttribute('data-genre');
+          document.querySelectorAll('.gallery-item').forEach(item => {
+            const itemGenre = item.getAttribute('data-genre');
+            item.style.display = (genre === 'all' || itemGenre === genre) ? 'block' : 'none';
+          });
+        });
+      });
+
+      // 画像クリック → モーダル
+      let currentModal = null;
+      let currentSpecialType = null;
+      document.querySelectorAll('.gallery-img').forEach(img => {
+        img.addEventListener('click', () => {
+          const title = img.getAttribute('data-title');
+          const desc = img.getAttribute('data-desc');
+          const special = img.getAttribute('data-special');
+          document.getElementById('modalTitle').textContent = title;
+          document.getElementById('modalDesc').textContent = desc;
+          document.getElementById('modalImg').src = img.src;
+
+          const specialBtn = document.getElementById('specialBtn');
+          if (special === 'false') {
+            specialBtn.style.display = 'none';
+          } else {
+            specialBtn.style.display = 'block';
+            currentSpecialType = special;
+            if (special === 'golden') {
+              specialBtn.textContent = '黄金';
+              specialBtn.setAttribute('data-type', 'golden');
+            } else if (special === 'ripple') {
+              specialBtn.textContent = '最期の波紋';
+              specialBtn.setAttribute('data-type', 'ripple');
+            }
+          }
+
+          // ここが修正！「imgеModal」→「imgModal」
+          currentModal = new bootstrap.Modal(document.getElementById('imgModal'));
+          currentModal.show();
+        });
+      });
+
+      // 特殊ボタン押下
+      document.getElementById('specialBtn').addEventListener('click', () => {
+        if (currentSpecialType === 'golden') {
+          document.getElementById('modalImg').src = 'gallery/jojo3_special.png';
+          document.getElementById('modalTitle').textContent = 'じょにじゃいもぶぜめどーじんしください♡';
+          document.getElementById('modalDesc').textContent = 'ガチで';
+        } else if (currentSpecialType === 'ripple') {
+          document.getElementById('modalImg').src = 'gallery/jojo2_special.png';
+          document.getElementById('modalTitle').textContent = 'ごめん';
+          document.getElementById('modalDesc').textContent = 'ごめん　うっ...';
+        }
+        document.getElementById('specialBtn').style.display = 'none'; // 1回きり
+      });
+
+      // 初期表示
+      document.querySelector('.genre-tab.active').click();
+    </script>
+  </body>
+</html>
